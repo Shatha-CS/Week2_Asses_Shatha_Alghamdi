@@ -1,0 +1,6 @@
+order_id,user_id,amount,quantity,created_at,status
+ORD-01,U101,50.00,1,2025-03-01T09:00:00Z,paid
+ORD-02,U102,20.00,2,2025-03-01T10:30:00Z,PAID
+ORD-03,U103,30.00,1,2025-03-02T11:00:00Z,refund
+ORD-04,U101,75.50,,2025-03-03T14:00:00Z,paid
+ORD-05,U104,not_available,1,2025-03-04T16:30:00Z,paid

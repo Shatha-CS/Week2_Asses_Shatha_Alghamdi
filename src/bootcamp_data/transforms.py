@@ -81,6 +81,59 @@ def dedupe_keep_latest(
 
 
 
+def parse_datetime(df: pd.DataFrame, col: str, utc: bool = True) -> pd.DataFrame:
+    parsed = pd.to_datetime(df[col], errors="coerce", utc=utc)
+    out = df.copy()
+    out[col] = parsed
+    return out
+
+
+def add_time_parts(df: pd.DataFrame, ts_col: str) -> pd.DataFrame:
+    ts = df[ts_col]
+    return df.assign(
+        date=ts.dt.date,
+        year=ts.dt.year,
+        month=ts.dt.to_period("M").astype("string"),
+        dow=ts.dt.day_name(),
+        hour=ts.dt.hour,
+    )
+
+
+
+
+
+def iqr_bounds(s: pd.Series, k: float = 1.5) -> tuple[float, float]:
+    clean = pd.to_numeric(s, errors="coerce").dropna()
+
+    if clean.empty:
+        return (float("nan"), float("nan"))
+
+    q1 = clean.quantile(0.25)
+    q3 = clean.quantile(0.75)
+    iqr = q3 - q1
+
+    low = q1 - k * iqr
+    high = q3 + k * iqr
+    return float(low), float(high)
+
+
+def winsorize(s: pd.Series, lo: float = 0.01, hi: float = 0.99) -> pd.Series:
+    x = pd.to_numeric(s, errors="coerce")
+    non_missing = x.dropna()
+
+    if non_missing.empty:
+        return x
+
+    lo_val = non_missing.quantile(lo)
+    hi_val = non_missing.quantile(hi)
+
+    return x.clip(lower=lo_val, upper=hi_val)
+
+
+
+
+
+
 
 
 

@@ -135,6 +135,28 @@ def winsorize(s: pd.Series, lo: float = 0.01, hi: float = 0.99) -> pd.Series:
 
 
 
+def add_outlier_flag(df: pd.DataFrame, col: str, k: float = 1.5, out_col: str | None = None) -> pd.DataFrame:
+   
+    s = pd.to_numeric(df[col], errors="coerce")
+
+    q1 = s.quantile(0.25)
+    q3 = s.quantile(0.75)
+    iqr = q3 - q1
+
+    low = q1 - k * iqr
+    high = q3 + k * iqr
+
+    flag_name = out_col or f"{col}__outlier"
+    return df.assign(**{flag_name: (s < low) | (s > high)})
+
+
+
+
+
+
+
+
+
 
 
 

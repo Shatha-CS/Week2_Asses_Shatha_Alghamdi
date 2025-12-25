@@ -1,0 +1,14 @@
+{
+  "rows_out": 5,
+  "missing_created_at": 0,
+  "country_match_rate": 1.0,
+  "config": {
+    "root": "C:\\Users\\win11\\Documents\\week2-data-work",
+    "raw_orders": "C:\\Users\\win11\\Documents\\week2-data-work\\data\\raw\\orders.csv",
+    "raw_users": "C:\\Users\\win11\\Documents\\week2-data-work\\data\\raw\\users.csv",
+    "out_orders_clean": "C:\\Users\\win11\\Documents\\week2-data-work\\data\\processed\\orders_clean.parquet",
+    "out_users": "C:\\Users\\win11\\Documents\\week2-data-work\\data\\processed\\users.parquet",
+    "out_analytics": "C:\\Users\\win11\\Documents\\week2-data-work\\data\\processed\\analytics_table.parquet",
+    "run_meta": "C:\\Users\\win11\\Documents\\week2-data-work\\data\\processed\\_run_meta.json"
+  }
+}

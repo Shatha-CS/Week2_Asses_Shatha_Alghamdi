@@ -1,121 +1,141 @@
+# Week 2 Project — ETL & EDA Pipeline
 
-Week 2 Project
-ETL and EDA Pipeline
+## Project Overview
+This project focuses on building a complete **ETL (Extract, Transform, Load) pipeline** and applying **Exploratory Data Analysis (EDA)** on the processed data.
 
-في هذا المشروع اشتغلت على بناء بايبلاين كامل لمعالجه البيانات وتحليلها. الهدف كان تطبيق مفاهيم ETL بشكل عملي ثم استخدام البيانات الناتجه في التحليل الاستكشافي ورسم اشكال توضح النتائج.
+The main objective is to apply ETL concepts in a practical, end-to-end workflow—starting from raw data ingestion, through data cleaning and transformation, and ending with analytical exploration and visualization.
 
-المشروع يمثل شغل الاسبوع كامل من اول تحميل البيانات الخام الى تجهيز مشروع جاهز للتسليم والتشغيل.
+This repository represents a full week of work, from handling raw datasets to delivering a clean, reproducible, and ready-to-run data project.
 
-فكره المشروع بشكل عام
+---
 
-بنيت بايبلاين ETL منظم يمر بالمراحل التاليه
-تحميل البيانات الخام
-تنظيف البيانات والتحقق من جودتها
-دمج الجداول بشكل امن
-معالجه القيم المتطرفه
-انتاج جدول تحليلي نهائي
-تسجيل معلومات التشغيل في ملف metadata
+## Project Concept
+A structured ETL pipeline was designed and implemented with the following stages:
 
-بعدها استخدمت البيانات الناتجه في تحليل EDA ورسم اشكال توضح السلوك العام للبيانات.
+- Loading raw data
+- Data cleaning and validation
+- Safe and consistent table joins
+- Outlier handling using winsorization
+- Generating a final analytics-ready table
+- Logging execution details into a metadata file
 
-اعدادات وتشغيل المشروع
+The resulting processed data is then used to perform **EDA**, generating insights and visualizations that describe the overall behavior of the data.
 
-اول خطوه هي الدخول على جذر المشروع
+---
 
-بعدها انشات بيئه افتراضيه
+## Project Setup & Execution
 
+### 1. Navigate to the project root directory
+
+### 2. Create a virtual environment
+```bash
 python -m venv .venv
+```
+### 3. Activate the Virtual Environment
 
-ثم تفعيلها
-
-في ويندوز
+**Windows**
+```bash
 .venv\Scripts\activate
-
-بعدها ثبت المكتبات المطلوبه
-
+```
+### 4. Install Required Dependencies
+```bash
 pip install -r requirements.txt
+```
+## Running the ETL Pipeline
 
-تشغيل ETL
-
-تشغيل بايبلاين ETL يتم عن طريق الامر التالي
-
+The ETL pipeline can be executed using:
+```bash
 python scripts/run_etl.py
+```
 
+## ETL Outputs
 
-مخرجات ETL
+After running the ETL pipeline, the following files will be generated:
 
-بعد تشغيل ETL تطلع الملفات التاليه
+- `data/processed/analytics_table.parquet`  
+  Final analytics table used for all downstream analysis
 
-data/processed/analytics_table.parquet
-هذا الجدول النهائي اللي استخدمته في التحليل
+- `data/processed/orders_clean.parquet`  
+  Cleaned version of the orders dataset
 
-data/processed/orders_clean.parquet
-نسخه منظفه من الطلبات
+- `data/processed/users.parquet`  
+  Cleaned version of the users dataset
 
-data/processed/users.parquet
-نسخه منظفه من المستخدمين
+- `data/processed/_run_meta.json`  
+  Execution metadata including:
+  - Number of output rows  
+  - Join match rate  
+  - Missing values statistics  
+  - Execution timestamp and file paths  
 
-data/processed/_run_meta.json
-ملف فيه معلومات عن التشغيل مثل
-عدد الصفوف الناتجه
-نسبه المطابقه في join
-عدد القيم الناقصه في الوقت
-والمسارات المستخدمه في التشغيل
+---
 
-تحليل البيانات EDA
+## Exploratory Data Analysis (EDA)
 
-بعد تشغيل ETL انتقلت لتحليل البيانات باستخدام الملف
-
+EDA is performed using the notebook:
+```bash
 notebooks/eda.ipynb
+```
+The analysis relies **only on processed data** from `data/processed` and includes:
 
-التحليل يعتمد فقط على البيانات الموجوده في data/processed
-وسويت فيه التالي
-تحليل الايرادات حسب الدول
-تحليل التوجه الزمني الشهري
-دراسه توزيع قيم الطلب بعد winsorization
-مقارنات باستخدام bootstrap بين مجموعات مختلفه
-وتصدير الرسومات الى reports/figures
+- Revenue analysis by country  
+- Monthly time-series trend analysis  
+- Distribution analysis of order values after winsorization  
+- Bootstrap-based comparisons between different groups  
+- Exporting visualizations to `reports/figures`  
 
-ملخص الشغل خلال الايام واعتقد هذا المهم لك استاذ:
+---
 
-اليوم الاول
-تحميل البيانات وفهم الاعمده وشكل البيانات
+## Weekly Work Breakdown
 
-اليوم الثاني
-تنظيف البيانات ومعالجه القيم الناقصه وتوحيد الانواع
+### Day 1
+- Loading raw datasets  
+- Understanding schema and column semantics  
 
-اليوم الثالث
-بناء جدول تحليلي وربط الجداول بشكل امن
+### Day 2
+- Data cleaning  
+- Handling missing values  
+- Data type standardization  
 
-اليوم الرابع
-تحليل البيانات ورسم الاشكال واستخدام bootstrap
+### Day 3
+- Building the analytical table  
+- Performing safe and validated joins  
 
-اليوم الخامس
-تجميع كل الشغل في ETL واحد
-اضافه run metadata
-كتابه summary و README
-وتجهيز المشروع كملف تسليم كامل
+### Day 4
+- Exploratory data analysis  
+- Visualization  
+- Bootstrap statistical comparisons  
 
-ملاحظات على جوده البيانات
+### Day 5
+- Integrating all steps into a unified ETL pipeline  
+- Adding run metadata logging  
+- Writing summaries and documentation  
+- Preparing the project for final submission  
 
-حجم البيانات صغير نسبيا
-بعض النتائج الاحصائيه غير حاسمه
-تم استخدام winsorization لتخفيف تاثير القيم المتطرفه
-التحليل يعكس الفتره الزمنيه الموجوده فقط ولا يمثل سلوك طويل المدى
+---
 
- لتحميل المشروع
+## Data Quality Notes
+- Dataset size is relatively small  
+- Some statistical results may not be conclusive  
+- Winsorization was applied to reduce the impact of extreme values  
+- The analysis reflects only the available time range and does not represent long-term trends  
 
-اول شي شغل
+## How to Run the Project (Quick Start)
 
+```bash
 python -m venv .venv
 pip install -r requirements.txt
-
-بعدها شغل
-
 python scripts/run_etl.py
+```
 
-المفروض تشوف
-ملفات parquet في data/processed
-ملف _run_meta.json
-وتقدر بعدها تفتح eda.ipynb ةتشغل التحليل
+After execution, you should see:
+- Parquet files under `data/processed`
+- `_run_meta.json` with execution details
+
+You can then open `notebooks/eda.ipynb` and run the EDA analysis.
+
+---
+
+## Summary
+This project demonstrates a complete, reproducible ETL and EDA workflow, emphasizing data quality, traceability, and analytical readiness. It reflects a production-oriented mindset while remaining suitable for academic evaluation and extension.
 
